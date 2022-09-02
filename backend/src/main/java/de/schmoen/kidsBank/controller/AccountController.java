@@ -1,24 +1,22 @@
-package de.schmoen.kidsBank;
+package de.schmoen.kidsBank.controller;
 
 import de.schmoen.kidsBank.entity.Account;
-import de.schmoen.kidsBank.repository.AccountRepository;
+import de.schmoen.kidsBank.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @CrossOrigin(value = "http://localhost:3000")
 @RestController
 public class AccountController {
 
     @Autowired
-    AccountRepository accountRepository;
+    AccountService accountService;
 
-    @GetMapping()
-    public List<Account> getAccounts() {
-        return accountRepository.findAll();
+    @GetMapping
+    public Account getAccountByNumber(Long number) {
+        return accountService.getAccountByNumber(number);
     }
 
 
